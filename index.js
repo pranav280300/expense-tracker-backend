@@ -22,11 +22,13 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.static("public"));
 app.use(cookieParser());
 //Route Files
-const authrouters = require("./routes/auth");
+const authRouters = require("./routes/auth");
+const expenseRouters = require("./routes/expense");
 
 //app.use(logger)
 //Mount Routers
-app.use("/api/v1/auth", authrouters);
+app.use("/api/v1/auth", authRouters);
+app.use("/api/v1/expenses", expenseRouters);
 app.use(errorHandler);
 
 const server = app.listen(PORT, () => {
