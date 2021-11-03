@@ -23,12 +23,12 @@ app.use(express.static("public"));
 app.use(cookieParser());
 //Route Files
 const authRouters = require("./routes/auth");
-const expenseRouters = require("./routes/expense");
+const CategoryRouters = require('./routes/category');
 
 //app.use(logger)
 //Mount Routers
 app.use("/api/v1/auth", authRouters);
-app.use("/api/v1/expenses", expenseRouters);
+app.use("/api/v1/categories", CategoryRouters);
 app.use(errorHandler);
 
 const server = app.listen(PORT, () => {

@@ -1,17 +1,28 @@
 const ErrorResponse = require("../utils/errorResponse");
 const Expense = require("../models/Expense");
 const asyncHandler = require("../middleware/async");
+const Category = require('../models/Category');
 //@dec  Create a Expense
 //@route POST /api/v1/expenses
 //@access Private
  
 exports.addExpense = asyncHandler(async (req, res, next) => {
   req.body.user = req.user._id;
-  const expense = await Expense.create(req.body);
-  res.status(200).json({
-    success: true,
-    data: expense,
-  });
+  req.body.category = req.params.category_Id;
+  let category = await Category.findById(req.params.category_Id);
+  if (category) {
+      const expense = await Expense.create(req.body);
+      res.status(200).json({
+        success: true,
+        data: expense,
+      });
+  } else {
+          res.status(200).json({
+            success: false,
+            data: {},
+          });
+  }
+
 });
 
 //@dec  get all Expenses
@@ -19,7 +30,7 @@ exports.addExpense = asyncHandler(async (req, res, next) => {
 //@access Private
  
 exports.getExpenses = asyncHandler(async (req, res, next) => {
-  const expenses = await Expense.find({ user: req.user._id });
+  const expenses = await Expense.find({ user: req.user._id, category: req.params.category_Id });
   res.status(200).json({
     success: true,
     data: expenses,
