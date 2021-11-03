@@ -9,7 +9,7 @@ Backend for the expense tracker
     - JWT_SECRET= ANY SECRET KEY
     - JWT_EXPIRE=30d
     - JWT_COOKIE_EXPIRE=30
-- step 3: npm run dev (Development Serve)
+- step 3: npm run dev (Development Server)
 
 - Note : POSTMAN link below to understand routing hierarchy https://www.getpostman.com/collections/2cddbf8f7f96f2822df6
    
